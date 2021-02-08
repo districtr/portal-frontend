@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import { Switch, Route, Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css";
 
-// import AddTutorial from "./components/add-tutorial.component";
-// import Tutorial from "./components/tutorial.component";
-import TutorialsList from "./components/tutorials-list";
+import Home from "./components/home";
+import Start from "./components/start";
+import CommentList from "./components/comment-list";
+import CommentForm from "./components/comment-form";
 
 class App extends Component {
   render() {
@@ -30,7 +32,10 @@ class App extends Component {
 
         <div className="container mt-3">
           <Switch>
-            <Route exact path={["/", "/tutorials"]} component={TutorialsList} />
+            <Route exact path={["/", "/home"]} component={Home} />
+            <Route exact path={["/start"]} component={Start} />
+            <Route exact path={["/comment"]} component={CommentList} />
+            <Route exact path={["/upload"]} component={CommentForm} />
           </Switch>
         </div>
       </div>
