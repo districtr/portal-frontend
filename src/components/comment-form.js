@@ -39,8 +39,7 @@ export default class CommentForm extends Component {
     return <div>
       <h2>Post a Comment</h2>
       <p>
-        Welcome to the <a href="#">Ohio Citizens Redistricting Commission</a>
-        public input portal.
+        Welcome to the <a href="#">Ohio Citizens Redistricting Commission</a> public input portal.
         Tell the CRC what’s important to you! You can do so with written testimony,
         by submitting a Community of Interest map, or by drawing your own districting plan.
       </p>
