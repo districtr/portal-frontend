@@ -11,6 +11,7 @@ export default class CommentForm extends Component {
       tutorials: [],
       postName: "",
       postLink: "",
+      videoLink: "",
     };
   }
 
@@ -37,10 +38,10 @@ export default class CommentForm extends Component {
 
   render() {
     return <div>
-      <h2>Post a Comment</h2>
+      <h2>Submit a Public Comment</h2>
       <p>
         Welcome to the <a href="#">Ohio Citizens Redistricting Commission</a> public input portal.
-        Tell the CRC what’s important to you! You can do so with written testimony,
+        Tell the OCRC what’s important to you! You can do so with written testimony,
         by submitting a Community of Interest map, or by drawing your own districting plan.
       </p>
       <p>
@@ -49,12 +50,12 @@ export default class CommentForm extends Component {
         social, cultural, economic, ethnic, environmental, or historical. By identifying
         COIs, districters will know which areas are important to keep whole in a district.
       </p>
-      <p>
+      <p style={{display:"none"}}>
         Districting plans are maps of Congressional, State Legislative, or other districts.
         Federal law requires that all districting plans have very close to equal population
         per district and that they do not prevent minority groups from electing candidates of choice.
       </p>
-      <i>
+      <i style={{display:"none"}}>
         If your comment passes quality standards,
         it will be visible on our public comments site.
       </i>
@@ -67,11 +68,12 @@ export default class CommentForm extends Component {
           <br/>
           <select>
             <option value="state">Statewide</option>
-            <option value="r1">Central Region</option>
-            <option value="r2">Region 2</option>
-            <option value="r3">Region 3</option>
-            <option value="r4">Region 4</option>
-            <option value="r5">Region 5</option>
+            <option value="r1">Central Region (Columbus/Delaware Co.)</option>
+            <option value="r2">Appalachian Region (Akron, Canton, Youngstown)</option>
+            <option value="r3">Cincinnati and Dayton</option>
+            <option value="r4">Greater Cleveland</option>
+            <option value="r5">Southeast Region (Athens, Zanesville)</option>
+            <option value="r6">Northwest Region (Toledo)</option>
           </select>
         </div>
         <div className="form-group">
@@ -133,7 +135,7 @@ export default class CommentForm extends Component {
         <hr/>
         <strong>What are you submitting?</strong>
         <div className="form-group">
-          <label className="form-label">Link (optional)</label>
+          <label className="form-label">Districtr Link (optional)</label>
           <input
             type="text"
             name="link"
@@ -145,6 +147,18 @@ export default class CommentForm extends Component {
             value={this.state.postLink}/>
         </div>
         <div className="form-group">
+          <label className="form-label">Video Link (optional)</label>
+          <input
+            type="text"
+            name="video-link"
+            className="form-control"
+            placeholder="https://"
+            autoComplete="off"
+            autofill="off"
+            onChange={e => this.setState({ videoLink: e.target.value })}
+            value={this.state.videoLink}/>
+        </div>
+        <div className="form-group">
           <label className="form-label">Written testimony</label>
           <textarea className="form-control" name="txt" autoComplete="off" autofill="off"></textarea>
         </div>
@@ -154,12 +168,15 @@ export default class CommentForm extends Component {
         </div>
         <hr/>
 
-        <strong>Are you submitting on behalf of an organization? Are you submitting on behalf of others?</strong>
+        <strong>Are you submitting on behalf of an organization?</strong>
         <div class="form-check">
           <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
           <label class="form-check-label" for="flexRadioDefault1">
             Yes
           </label>
+          <br/>
+          <label>Organization</label>&nbsp;&nbsp;
+          <input type="text" name="org-name"/>
         </div>
         <div class="form-check">
           <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
@@ -169,7 +186,7 @@ export default class CommentForm extends Component {
         </div>
         <hr/>
 
-        <strong>Is there anything else you would like the Ohio Community Commission to know?</strong>
+        <strong>Is there anything else you would like the Ohio Citizens Redistricting Commission to know?</strong>
         <div className="form-group">
           <textarea className="form-control">
           </textarea>

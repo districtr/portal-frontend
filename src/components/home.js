@@ -37,7 +37,7 @@ export default class Home extends Component {
         <li>Scans, digital drawings, documents, etc. (files)</li>
         <li>Written comments</li>
       </ul>
-      <a class="btn btn-success" href="/upload">Post a Comment</a>
+      <a class="btn btn-success" href="/upload">Submit a Public Comment</a>
     </div>
   }
 }

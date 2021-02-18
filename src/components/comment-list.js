@@ -43,7 +43,7 @@ export default class CommentList extends Component {
           </a>
         </li>)}
       </ul>
-      <a class="btn btn-success" href="/upload">Post a Comment</a>
+      <a class="btn btn-success" href="/upload">Submit a Public Comment</a>
     </div>
   }
 }
