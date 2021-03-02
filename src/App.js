@@ -24,7 +24,7 @@ class App extends Component {
             </li>
             <li className="nav-item">
               <Link to={"/comment"} className="nav-link">
-                Share Comments
+                Submit Comments
               </Link>
             </li>
           </div>

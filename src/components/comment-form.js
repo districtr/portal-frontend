@@ -12,6 +12,7 @@ export default class CommentForm extends Component {
       postName: "",
       postLink: "",
       videoLink: "",
+      postSalutation: "",
     };
   }
 
@@ -64,21 +65,67 @@ export default class CommentForm extends Component {
       </i>
       <div className="form">
         <div className="form-group">
-          <label className="form-label">Region</label>
+          <label className="form-label">Mapped Location</label>
           <br/>
-          <select>
-            <option value="state">Statewide</option>
-            <option value="r1">Central Region (Columbus/Delaware Co.)</option>
-            <option value="r2">Appalachian Region (Akron, Canton, Youngstown)</option>
-            <option value="r3">Cincinnati and Dayton</option>
-            <option value="r4">Greater Cleveland</option>
-            <option value="r5">Southeast Region (Athens, Zanesville)</option>
-            <option value="r6">Northwest Region (Toledo)</option>
-          </select>
+          <div className="input-group">
+            <button className="btn btn-primary" type="button">Statewide</button>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Region</button>
+            <ul className="dropdown-menu">
+              <li><a className="dropdown-item">Central Region (Columbus/Delaware Co.)</a></li>
+              <li><a className="dropdown-item">Appalachian Region (Akron, Canton, Youngstown)</a></li>
+              <li><a className="dropdown-item">Cincinnati and Dayton</a></li>
+              <li><a className="dropdown-item">Greater Cleveland</a></li>
+              <li><a className="dropdown-item">Southeast Region (Athens, Zanesville)</a></li>
+              <li><a className="dropdown-item">Northwest Region (Toledo)</a></li>
+            </ul>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">City</button>
+            <ul className="dropdown-menu">
+              <li><a className="dropdown-item">Akron</a></li>
+              <li><a className="dropdown-item">Canton</a></li>
+              <li><a className="dropdown-item">Cincinnati</a></li>
+              <li><a className="dropdown-item">Cleveland</a></li>
+              <li><a className="dropdown-item">Columbus</a></li>
+              <li><a className="dropdown-item">Dayton</a></li>
+              <li><a className="dropdown-item">Euclid</a></li>
+              <li><a className="dropdown-item">Lima</a></li>
+              <li><a className="dropdown-item">Mansfield</a></li>
+              <li><a className="dropdown-item">Portsmouth</a></li>
+              <li><a className="dropdown-item">Toledo</a></li>
+              <li><a className="dropdown-item">Youngstown</a></li>
+            </ul>
+
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+            <input
+              type="text"
+              name="regionName"
+              className="form-control"
+              autoComplete="off"
+              autofill="off"
+              placeholder="Other"
+              style={{maxWidth:200}}
+            />
+          </div>
         </div>
         <div className="form-group">
           <label className="form-label">Your Name</label>
           <div className="input-group">
+            <input
+              type="text"
+              name="salutation"
+              className="form-control"
+              autoComplete="off"
+              autofill="off"
+              onChange={e => this.setState({ postSalutation: e.target.value })}
+              placeholder="(Mr/Ms/Mrs/Dr)"
+              style={{maxWidth: 130}}
+              value={this.state.postSalutation}/>
             <input
               type="text"
               name="first"
@@ -102,12 +149,6 @@ export default class CommentForm extends Component {
           </div>
         </div>
         <div className="form-group">
-          <label className="form-label">Pronouns</label>
-          <input name="pronouns" type="text" className="form-control"
-            autoComplete="off" autofill="off"
-            />
-        </div>
-        <div className="form-group">
           <label className="form-label">E-mail address</label>
           <input name="email" type="email" className="form-control"
             autoComplete="off" autofill="off"
@@ -118,18 +159,22 @@ export default class CommentForm extends Component {
           <div className="input-group">
             <input
               type="text"
-              name="place"
+              name="city"
               className="form-control"
-              autoComplete="off"
-              autofill="off"
               placeholder="Place"/>
             <input
               type="text"
               name="state"
               className="form-control"
-              autoComplete="off"
-              autofill="off"
               placeholder="State"/>
+            <input
+              type="text"
+              name="zipcode"
+              size="5"
+              maxLength="5"
+              className="form-control"
+              style={{maxWidth:100}}
+              placeholder="ZIP"/>
           </div>
         </div>
         <hr/>
@@ -169,18 +214,18 @@ export default class CommentForm extends Component {
         <hr/>
 
         <strong>Are you submitting on behalf of an organization?</strong>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
-          <label class="form-check-label" for="flexRadioDefault1">
+        <div className="form-check">
+          <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
+          <label className="form-check-label" htmlFor="flexRadioDefault1">
             Yes
           </label>
           <br/>
           <label>Organization</label>&nbsp;&nbsp;
           <input type="text" name="org-name"/>
         </div>
-        <div class="form-check">
-          <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
-          <label class="form-check-label" for="flexRadioDefault1">
+        <div className="form-check">
+          <input className="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
+          <label className="form-check-label" htmlFor="flexRadioDefault1">
             No
           </label>
         </div>
