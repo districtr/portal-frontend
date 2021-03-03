@@ -12,7 +12,8 @@ export default class CommentForm extends Component {
       postName: "",
       postLink: "",
       videoLink: "",
-      postSalutation: "",
+      selectMode: -1,
+      selectName: "",
     };
   }
 
@@ -38,6 +39,30 @@ export default class CommentForm extends Component {
   }
 
   render() {
+    const regions = [
+      'Central Region (Columbus/Delaware Co.)',
+      'Appalachian Region (Akron, Canton, Youngstown)',
+      'Cincinnati and Dayton',
+      'Greater Cleveland',
+      'Southeast Region (Athens, Zanesville)',
+      'Northwest Region (Toledo)',
+    ];
+
+    const cities = [
+      'Akron',
+      'Canton',
+      'Cincinnati',
+      'Cleveland',
+      'Columbus',
+      'Dayton',
+      'Euclid',
+      'Lima',
+      'Mansfield',
+      'Portsmouth',
+      'Toledo',
+      'Youngstown',
+    ];
+
     return <div>
       <h2>Submit a Public Comment</h2>
       <p>
@@ -68,36 +93,48 @@ export default class CommentForm extends Component {
           <label className="form-label">Mapped Location</label>
           <br/>
           <div className="input-group">
-            <button className="btn btn-primary" type="button">Statewide</button>
+            <button
+              className={"btn " + (this.state.selectMode === 0 ? "btn-primary" : "btn-outline-secondary")}
+              type="button"
+              onClick={e => this.setState({ selectMode: 0 })}
+            >Statewide</button>
 
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-            <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">Region</button>
+            <button
+              className={"btn dropdown-toggle " + (this.state.selectMode === 1 ? "btn-primary" : "btn-outline-secondary")}
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >{this.state.selectMode === 1 ? this.state.selectName : "Region"}</button>
             <ul className="dropdown-menu">
-              <li><a className="dropdown-item">Central Region (Columbus/Delaware Co.)</a></li>
-              <li><a className="dropdown-item">Appalachian Region (Akron, Canton, Youngstown)</a></li>
-              <li><a className="dropdown-item">Cincinnati and Dayton</a></li>
-              <li><a className="dropdown-item">Greater Cleveland</a></li>
-              <li><a className="dropdown-item">Southeast Region (Athens, Zanesville)</a></li>
-              <li><a className="dropdown-item">Northwest Region (Toledo)</a></li>
+              {regions.map((r, idx) => <li key={idx}>
+                <a href="#" className="dropdown-item" onClick={e => {
+                  setTimeout(() => this.setState({ selectMode: 1, selectName: r }),
+                    250);
+                }}>
+                  {r}
+                </a>
+              </li>)}
             </ul>
 
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-            <button className="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">City</button>
+            <button
+              className={"btn dropdown-toggle " + (this.state.selectMode === 2 ? "btn-primary" : "btn-outline-secondary")}
+              type="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >{this.state.selectMode === 2 ? this.state.selectName : "City"}</button>
             <ul className="dropdown-menu">
-              <li><a className="dropdown-item">Akron</a></li>
-              <li><a className="dropdown-item">Canton</a></li>
-              <li><a className="dropdown-item">Cincinnati</a></li>
-              <li><a className="dropdown-item">Cleveland</a></li>
-              <li><a className="dropdown-item">Columbus</a></li>
-              <li><a className="dropdown-item">Dayton</a></li>
-              <li><a className="dropdown-item">Euclid</a></li>
-              <li><a className="dropdown-item">Lima</a></li>
-              <li><a className="dropdown-item">Mansfield</a></li>
-              <li><a className="dropdown-item">Portsmouth</a></li>
-              <li><a className="dropdown-item">Toledo</a></li>
-              <li><a className="dropdown-item">Youngstown</a></li>
+              {cities.map((r, idx) => <li key={idx}>
+                <a href="#" className="dropdown-item" onClick={e => {
+                  setTimeout(() => this.setState({ selectMode: 2, selectName: r }),
+                    250);
+                }}>
+                  {r}
+                </a>
+              </li>)}
             </ul>
 
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -116,16 +153,6 @@ export default class CommentForm extends Component {
         <div className="form-group">
           <label className="form-label">Your Name</label>
           <div className="input-group">
-            <input
-              type="text"
-              name="salutation"
-              className="form-control"
-              autoComplete="off"
-              autofill="off"
-              onChange={e => this.setState({ postSalutation: e.target.value })}
-              placeholder="(Mr/Ms/Mrs/Dr)"
-              style={{maxWidth: 130}}
-              value={this.state.postSalutation}/>
             <input
               type="text"
               name="first"
@@ -147,6 +174,12 @@ export default class CommentForm extends Component {
               required
               value={this.state.lastName}/>
           </div>
+        </div>
+        <div className="form-group">
+          <label className="form-label">Pronouns</label>
+          <input name="pronouns" type="text" className="form-control"
+            autoComplete="off" autofill="off"
+            />
         </div>
         <div className="form-group">
           <label className="form-label">E-mail address</label>
