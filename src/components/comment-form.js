@@ -40,11 +40,11 @@ export default class CommentForm extends Component {
 
   render() {
     const regions = [
+      'Appalachia Region (Athens, Zanesville)',
       'Central Region (Columbus/Delaware Co.)',
-      'Appalachian Region (Akron, Canton, Youngstown)',
       'Cincinnati and Dayton',
       'Greater Cleveland',
-      'Southeast Region (Athens, Zanesville)',
+      'Northeast-Central Region (Akron, Canton, Youngstown)',
       'Northwest Region (Toledo)',
     ];
 
